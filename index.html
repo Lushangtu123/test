@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实时网页开发测试工具</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 实时网页开发测试工具</h1>
+            <div class="controls">
+                <button id="runBtn" class="btn btn-primary">▶️ 运行</button>
+                <button id="resetBtn" class="btn btn-secondary">🔄 重置</button>
+                <button id="saveBtn" class="btn btn-success">💾 保存</button>
+                <button id="loadBtn" class="btn btn-info">📁 加载</button>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="editor-panel">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="html">HTML</button>
+                    <button class="tab-btn" data-tab="css">CSS</button>
+                    <button class="tab-btn" data-tab="js">JavaScript</button>
+                </div>
+                
+                <div class="editor-container">
+                    <div class="editor-tab active" id="html-tab">
+                        <textarea id="htmlEditor" placeholder="在这里输入HTML代码..."><!DOCTYPE html>
+<html>
+<head>
+    <title>测试页面</title>
+</head>
+<body>
+    <h1>欢迎使用实时预览工具！</h1>
+    <p>在左侧编辑代码，右侧会实时显示效果。</p>
+    <button onclick="changeColor()">点击改变颜色</button>
+    <div id="demo">这是一个演示区域</div>
+</body>
+</html></textarea>
+                    </div>
+                    
+                    <div class="editor-tab" id="css-tab">
+                        <textarea id="cssEditor" placeholder="在这里输入CSS代码...">body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+button {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+button:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+#demo {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 2px solid rgba(255,255,255,0.2);
+}</textarea>
+                    </div>
+                    
+                    <div class="editor-tab" id="js-tab">
+                        <textarea id="jsEditor" placeholder="在这里输入JavaScript代码...">function changeColor() {
+    const demo = document.getElementById('demo');
+    const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    demo.style.backgroundColor = randomColor;
+    demo.style.transform = 'scale(1.05)';
+    
+    setTimeout(() => {
+        demo.style.transform = 'scale(1)';
+    }, 200);
+}
+
+// 添加一些交互效果
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('页面加载完成！');
+    
+    // 为演示区域添加点击效果
+    const demo = document.getElementById('demo');
+    if (demo) {
+        demo.addEventListener('click', function() {
+            this.style.boxShadow = '0 0 20px rgba(255,255,255,0.5)';
+            setTimeout(() => {
+                this.style.boxShadow = 'none';
+            }, 300);
+        });
+    }
+});</textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="preview-panel">
+                <div class="preview-header">
+                    <h3>🖥️ 实时预览</h3>
+                    <div class="preview-controls">
+                        <button id="refreshBtn" class="btn-small">🔄</button>
+                        <button id="fullscreenBtn" class="btn-small">⛶</button>
+                    </div>
+                </div>
+                <iframe id="preview" sandbox="allow-scripts allow-same-origin"></iframe>
+            </div>
+        </div>
+        
+        <div class="status-bar">
+            <span id="status">准备就绪</span>
+            <span id="lastUpdate"></span>
+        </div>
+    </div>
+
+    <!-- 隐藏的文件输入 -->
+    <input type="file" id="fileInput" accept=".json" style="display: none;">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
